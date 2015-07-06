@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-@Entity(name="Group")
+@Entity(name="Category")
 public class Category {
 
 	@GeneratedValue(strategy=GenerationType.AUTO)

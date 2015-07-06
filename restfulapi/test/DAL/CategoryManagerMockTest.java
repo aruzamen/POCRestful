@@ -51,9 +51,8 @@ public class CategoryManagerMockTest {
 	}
 	
 	@Test
-	public void findCategoryError() throws Exception {
-		thrown.expect(Exception.class);
-		thrown.expectMessage("CategoryId should more than zero");
+	public void findCategoryError() {
+		thrown.expect(BadRequestException.class);
 		categoryManager.getById(-1);
 	}
 
@@ -70,7 +69,7 @@ public class CategoryManagerMockTest {
 	}
 
 	@Test
-	public void createCategory() {
+	public void createCategory() throws Exception {
 		Transaction transaction = mock(TransactionLocal.class); 
 		when(session.getTransaction()).thenReturn(transaction);
 		categoryManager.createCategory(categoryTemplate);
@@ -86,9 +85,8 @@ public class CategoryManagerMockTest {
 	}
 	
 	@Test
-	public void updateCategoryError() throws Exception {
-		thrown.expect(Exception.class);
-		thrown.expectMessage("CategoryId should more than zero");
+	public void updateCategoryError() {
+		thrown.expect(BadRequestException.class);
 		categoryManager.updateCategory(-1, categoryTemplate);
 	}
 
@@ -104,8 +102,7 @@ public class CategoryManagerMockTest {
 	
 	@Test
 	public void deleteCategoryError() throws Exception {
-		thrown.expect(Exception.class);
-		thrown.expectMessage("CategoryId should more than zero");
+		thrown.expect(BadRequestException.class);
 		categoryManager.removeCategory(-1);
 	}
 }

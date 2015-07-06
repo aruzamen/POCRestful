@@ -1,5 +1,6 @@
 package DAL;
 
+
 import java.util.List;
 import model.Category;
 import org.hibernate.Query;
@@ -19,13 +20,13 @@ public class CategoryManager {
 		return list;
 	}
 
-	public Category getById(int categoryId) throws Exception {
+	public Category getById(int categoryId) {
 		validateCategoryId(categoryId);
 		Category category = (Category)session.get(Category.class, categoryId);
 		return category;
 	}
 
-	public Category updateCategory(int categoryId, Category category) throws Exception {
+	public Category updateCategory(int categoryId, Category category) {
 		validateCategoryId(categoryId);
 		category.setId(categoryId);
 		session.beginTransaction();
@@ -34,7 +35,7 @@ public class CategoryManager {
 		return category;
 	}
 
-	public Category removeCategory(int categoryId) throws Exception {
+	public Category removeCategory(int categoryId) {
 		validateCategoryId(categoryId);
 		Category category = (Category)session.get(Category.class, categoryId);
 		session.beginTransaction();
@@ -43,13 +44,16 @@ public class CategoryManager {
 		return category;
 	}
 
-	private void validateCategoryId(int categoryId) throws Exception  {
+	private void validateCategoryId(int categoryId) {
 		if(categoryId < 0) {
-			throw new Exception("CategoryId should more than zero");
+			throw new BadRequestException("CategoryId should more than zero");
 		}
 	}
 
 	public Category createCategory(Category category) {
+		if (category.getName().equals("")) {
+			throw new BadRequestException("name is empty");
+		}
 		session.beginTransaction();
 		session.persist(category);
 		session.getTransaction().commit();

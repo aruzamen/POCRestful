@@ -14,6 +14,7 @@ import org.hibernate.SessionFactory;
 
 import model.Category;
 import model.Employee;
+import DAL.BadRequestException;
 import DAL.CategoryManager;
 import DAL.EmployeeManager;
 import DAL.HibernateUtil;
@@ -40,41 +41,35 @@ public class CategoryServices {
 	@GET
 	@Path("{categoryId}")
 	@Produces("application/json")
-	public Category getById(@PathParam("categoryId") int categoryId) throws Exception {
+	public Category getById(@PathParam("categoryId") int categoryId) {
 		return categoryManager.getById(categoryId);
 	}
 
 	@PUT
 	@Path("{categoryId}")
 	@Produces("application/json")
-	public Category updateEmployee(@PathParam("categoryId") int categoryId, Category category) throws Exception {
+	public Category updateEmployee(@PathParam("categoryId") int categoryId, Category category) {
 		return categoryManager.updateCategory(categoryId, category);
 	}
 
 	@DELETE
 	@Path("{categoryId}")
 	@Produces("application/json")
-	public Category removeEmployee(@PathParam("categoryId") int categoryId) throws Exception {
+	public Category removeEmployee(@PathParam("categoryId") int categoryId) {
 		return categoryManager.removeCategory(categoryId);
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json")
-	public Category createGroup(Category group) throws Exception {
-		return categoryManager.createCategory(group);
+	public Category createGroup(Category category) {
+		return categoryManager.createCategory(category);
 	}
 
 	@POST @Path("{categoryId}/employee")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json")
-	public Employee createEmployee(@PathParam("categoryId") int categoryId, Employee employee) throws Exception {
-		if (employee.getFirstName() == null) {
-			throw new Exception("FisrtName of employee should be provided");
-		}
-		if (employee.getLastName() == null) {
-			throw new Exception("LastName of employee should be provided");
-		}
+	public Employee createEmployee(@PathParam("categoryId") int categoryId, Employee employee) {
 		Category category = categoryManager.getById(categoryId); 
 		employee.setCategory(category);
 		return employeeManager.createEmployee(employee);
