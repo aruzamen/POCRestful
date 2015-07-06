@@ -7,4 +7,4 @@ restfulapi/.myeclipse
 restfulapi/.mymetadata
 restfulapi/.project
 restfulapi/.settings
-restfulapi/WebRoot/
+restfulapi/WebRoot/WEB-INF/*
