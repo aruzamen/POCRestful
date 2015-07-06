@@ -1,0 +1,10 @@
+.bower-*/
+node_modules/
+.idea/
+.metadata
+restfulapi/.classpath
+restfulapi/.myeclipse
+restfulapi/.mymetadata
+restfulapi/.project
+restfulapi/.settings
+restfulapi/WebRoot/WEB-INF/*
