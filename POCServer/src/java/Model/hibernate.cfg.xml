@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="hibernate.connection.url">jdbc:sqlserver://localhost\WTORRICOSC-DH01:1433;databaseName=POC</property>
+    <property name="hibernate.connection.username">sa</property>
+    <property name="hibernate.connection.password">Manager123</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="Model/Roles.hbm.xml"/>
+    <mapping resource="Model/UserRoles.hbm.xml"/>
+    <mapping resource="Model/User.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

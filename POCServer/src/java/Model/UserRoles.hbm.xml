@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 2, 2015 6:45:20 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.UserRoles" table="UserRoles" schema="dbo" catalog="POC" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="roles" class="Model.Roles" fetch="select">
+            <column name="id_rol" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="Model.User" fetch="select">
+            <column name="id_user" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
