@@ -7,9 +7,9 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 
 public class CategoryManagerTest {
-	
+
 	private CategoryManager categoryManager;
-	
+
 	public CategoryManagerTest() {
 		HibernateUtil hibernateUtil = HibernateUtil.getInstance();		
 		SessionFactory factory = hibernateUtil.getSessionFactory();
@@ -21,7 +21,6 @@ public class CategoryManagerTest {
 		Category newCategory = new Category();
 		newCategory.setName("test1");
 		Category category = categoryManager.createCategory(newCategory);
-
 		categoryManager.removeCategory(category.getId());
 		Assert.assertEquals(category.getName(), newCategory.getName());
 	}
@@ -41,13 +40,11 @@ public class CategoryManagerTest {
 		Category newCategory = new Category();
 		newCategory.setName("test1");
 		Category category = categoryManager.createCategory(newCategory);
-
 		Category categoryResult = categoryManager.getById(category.getId());
-		 
 		categoryManager.removeCategory(category.getId());
 		Assert.assertEquals(category.getId(), categoryResult.getId());
 	}
-	
+
 	@Test
 	public void updateCategory() {
 		Category newCategory = new Category();

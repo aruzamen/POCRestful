@@ -1,12 +1,10 @@
 package DAL;
+
 import java.util.List;
-
 import model.Employee;
-
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 public class EmployeeManager {
 
@@ -35,7 +33,6 @@ public class EmployeeManager {
 		employee.setId(employeeId);
 		session.beginTransaction();
 		session.saveOrUpdate(employee);
-		//Hibernate.initialize(employee.getCategory());
 		session.getTransaction().commit();
 		return employee;
 	}

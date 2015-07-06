@@ -8,7 +8,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.SessionFactory;
@@ -24,14 +23,14 @@ public class CategoryServices {
 
 	private CategoryManager categoryManager;
 	private EmployeeManager employeeManager;
-	
+
 	public CategoryServices() {
 		HibernateUtil hibernateUtil = HibernateUtil.getInstance();		
 		SessionFactory factory = hibernateUtil.getSessionFactory();
 		categoryManager = new CategoryManager(factory.openSession());
 		employeeManager = new EmployeeManager(factory.openSession());
 	}
-	
+
 	@GET
 	@Produces("application/json")
 	public List<Category> getAll() {
@@ -65,7 +64,7 @@ public class CategoryServices {
 	public Category createGroup(Category group) throws Exception {
 		return categoryManager.createCategory(group);
 	}
-	
+
 	@POST @Path("{categoryId}/employee")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json")

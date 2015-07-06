@@ -16,7 +16,6 @@ private static HibernateUtil instance = null;
    private HibernateUtil() {
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
-        
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
    }
@@ -31,10 +30,4 @@ private static HibernateUtil instance = null;
    public static SessionFactory getSessionFactory() {
         return sessionFactory;
    }
-   
-   public static Session openSession() {
-	   Session session = sessionFactory.openSession();
-       return session;
-  }
-
 }

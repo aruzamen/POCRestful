@@ -13,7 +13,7 @@ public class Employee {
 	private int id;
 
 	private String firstName;
-	
+
 	private String lastName;  
 
 	private Category category;
@@ -28,11 +28,11 @@ public class Employee {
 
 	public String getFirstName() {  
 	    return firstName;  
-	}  
+	}
 
 	public void setFirstName(String firstName) {  
 	    this.firstName = firstName;  
-	}  
+	}
 
 	public String getLastName() {  
 	    return lastName;  
