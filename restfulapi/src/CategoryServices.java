@@ -40,21 +40,21 @@ public class CategoryServices {
 	@GET
 	@Path("{categoryId}")
 	@Produces("application/json")
-	public Category getById(@PathParam("categoryId") int categoryId) {
+	public Category getById(@PathParam("categoryId") int categoryId) throws Exception {
 		return categoryManager.getById(categoryId);
 	}
 
 	@PUT
 	@Path("{categoryId}")
 	@Produces("application/json")
-	public Category updateEmployee(@PathParam("categoryId") int categoryId, Category category) {
+	public Category updateEmployee(@PathParam("categoryId") int categoryId, Category category) throws Exception {
 		return categoryManager.updateCategory(categoryId, category);
 	}
 
 	@DELETE
 	@Path("{categoryId}")
 	@Produces("application/json")
-	public Category removeEmployee(@PathParam("categoryId") int categoryId) {
+	public Category removeEmployee(@PathParam("categoryId") int categoryId) throws Exception {
 		return categoryManager.removeCategory(categoryId);
 	}
 

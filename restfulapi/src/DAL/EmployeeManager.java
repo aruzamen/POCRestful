@@ -46,7 +46,13 @@ public class EmployeeManager {
 		return removeEmployee;
 	}
 
-	public Employee createEmployee(Employee employee) {
+	public Employee createEmployee(Employee employee) throws Exception {
+		if (employee.getFirstName() == null) {
+			throw new Exception("FisrtName of employee should be provided");
+		}
+		if (employee.getLastName() == null) {
+			throw new Exception("LastName of employee should be provided");
+		}
 		session.beginTransaction();
 		session.persist(employee);
 		session.getTransaction().commit();

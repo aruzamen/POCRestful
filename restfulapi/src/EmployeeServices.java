@@ -56,12 +56,6 @@ public class EmployeeServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json")
 	public Employee createEmployee(Employee employee) throws Exception {
-		if (employee.getFirstName() == null) {
-			throw new Exception("FisrtName of employee should be provided");
-		}
-		if (employee.getLastName() == null) {
-			throw new Exception("LastName of employee should be provided");
-		}
 		return employeeManager.createEmployee(employee);
 	}
 }

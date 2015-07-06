@@ -19,12 +19,14 @@ public class CategoryManager {
 		return list;
 	}
 
-	public Category getById(int categoryId) {
+	public Category getById(int categoryId) throws Exception {
+		validateCategoryId(categoryId);
 		Category category = (Category)session.get(Category.class, categoryId);
 		return category;
 	}
 
-	public Category updateCategory(int categoryId, Category category) {
+	public Category updateCategory(int categoryId, Category category) throws Exception {
+		validateCategoryId(categoryId);
 		category.setId(categoryId);
 		session.beginTransaction();
 		session.saveOrUpdate(category);
@@ -32,12 +34,19 @@ public class CategoryManager {
 		return category;
 	}
 
-	public Category removeCategory(int categoryId) {
+	public Category removeCategory(int categoryId) throws Exception {
+		validateCategoryId(categoryId);
 		Category category = (Category)session.get(Category.class, categoryId);
 		session.beginTransaction();
 		session.delete(category);
 		session.getTransaction().commit();
 		return category;
+	}
+
+	private void validateCategoryId(int categoryId) throws Exception  {
+		if(categoryId < 0) {
+			throw new Exception("CategoryId should more than zero");
+		}
 	}
 
 	public Category createCategory(Category category) {

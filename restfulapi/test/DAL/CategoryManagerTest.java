@@ -17,16 +17,7 @@ public class CategoryManagerTest {
 	}
 
 	@Test
-	public void createCategory() {
-		Category newCategory = new Category();
-		newCategory.setName("test1");
-		Category category = categoryManager.createCategory(newCategory);
-		categoryManager.removeCategory(category.getId());
-		Assert.assertEquals(category.getName(), newCategory.getName());
-	}
-
-	@Test
-	public void getAll() {
+	public void getAll() throws Exception {
 		Category newCategory = new Category();
 		newCategory.setName("test1");
 		Category category = categoryManager.createCategory(newCategory);
@@ -36,32 +27,12 @@ public class CategoryManagerTest {
 	}
 
 	@Test
-	public void getById() {
+	public void getById() throws Exception {
 		Category newCategory = new Category();
 		newCategory.setName("test1");
 		Category category = categoryManager.createCategory(newCategory);
 		Category categoryResult = categoryManager.getById(category.getId());
 		categoryManager.removeCategory(category.getId());
-		Assert.assertEquals(category.getId(), categoryResult.getId());
-	}
-
-	@Test
-	public void updateCategory() {
-		Category newCategory = new Category();
-		newCategory.setName("test1");
-		Category category = categoryManager.createCategory(newCategory);
-		category.setName("test update");
-		Category categoryResult = categoryManager.updateCategory(category.getId(), category);
-		categoryManager.removeCategory(category.getId());
-		Assert.assertEquals("test update", categoryResult.getName());
-	}
-
-	@Test
-	public void deleteCategory() {
-		Category newCategory = new Category();
-		newCategory.setName("test1");
-		Category category = categoryManager.createCategory(newCategory);
-		Category categoryResult = categoryManager.removeCategory(category.getId());
 		Assert.assertEquals(category.getId(), categoryResult.getId());
 	}
 }
