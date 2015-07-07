@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Category model.
+ */
 @XmlRootElement
 @Entity(name="Category")
 public class Category {

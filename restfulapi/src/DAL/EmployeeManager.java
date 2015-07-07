@@ -6,10 +6,18 @@ import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+/**
+ * Handles all employee resource.
+ */
 public class EmployeeManager {
 
+    /** Data base session */
     Session session = null;
 
+    /**
+     * Constructor.
+     * @param  currentSession  database connection
+     */
     public EmployeeManager(Session currentSession) {
         if (currentSession == null) {
             throw new BadRequestException("There is not access to Database");
@@ -17,6 +25,10 @@ public class EmployeeManager {
         session = currentSession;
     }
 
+    /**
+     * Gets all employees.
+     * @return list of employees 
+     */
     public List<Employee> getAll() {
         Query query = session.createQuery("from Employee");
         List<Employee> list = query.list(); 
@@ -26,6 +38,11 @@ public class EmployeeManager {
         return list;
     }
 
+    /**
+     * Finds an employee by ID.
+     * @param employeeId unique identifier of employee
+     * @return employee object
+     */
     public Employee getById(int employeeId) {
         Employee employee = (Employee)session.get(Employee.class, employeeId);
         if (employee == null) {
@@ -35,6 +52,13 @@ public class EmployeeManager {
         return employee;
     }
 
+    /**
+     * Updates a employee.
+     * @param employeeId unique identifier of employee
+     * @param employee object with changes
+     * @return updated employee object 
+     */
+
     public Employee updateEmployee(int employeeId, Employee employee) {
         employee.setId(employeeId);
         session.beginTransaction();
@@ -43,6 +67,11 @@ public class EmployeeManager {
         return employee;
     }
 
+    /**
+     * Removes a employee by ID.
+     * @param employeeId unique identifier of employee
+     * @return removed employee object
+     */
     public Employee removeEmployee(int employeeId) {
         Employee removeEmployee = (Employee)session.get(Employee.class, employeeId);
         if (removeEmployee == null) {
@@ -55,6 +84,11 @@ public class EmployeeManager {
         return removeEmployee;
     }
 
+    /**
+     * Creates a new employee.
+     * @param employee object to be saved
+     * @return employee object
+     */
     public Employee createEmployee(Employee employee) {
         if (employee.getFirstName() == null) {
             throw new BadRequestException("FirstName of employee should be provided");

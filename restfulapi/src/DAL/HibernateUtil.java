@@ -5,12 +5,18 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * Helper singleton class manages database connection
+ */
 public class HibernateUtil {
 
     private static HibernateUtil instance = null;
     private static SessionFactory sessionFactory;
     private static StandardServiceRegistry serviceRegistry;
 
+    /**
+     * Constructor.
+     */
     private HibernateUtil() {
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
@@ -18,6 +24,10 @@ public class HibernateUtil {
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
 
+    /**
+     * Builds ones the current class.
+     * @return an instance of HibernateUtil class
+     */
     public static HibernateUtil getInstance() {
         if(instance == null) {
             instance = new HibernateUtil();
@@ -25,6 +35,10 @@ public class HibernateUtil {
         return instance;
     }
 
+    /**
+     * Getter of session factory class. 
+     * @return sessionFactory
+     */
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }

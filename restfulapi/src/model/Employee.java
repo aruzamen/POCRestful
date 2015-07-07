@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Employee model.
+ */
 @XmlRootElement
 @Entity(name="Employee")
 public class Employee {
