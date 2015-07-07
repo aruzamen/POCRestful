@@ -8,8 +8,8 @@ import org.hibernate.cfg.Configuration;
 /**
  * Helper singleton class manages database connection
  */
-public class HibernateUtil {
-
+public class HibernateUtil
+{
     private static HibernateUtil instance = null;
     private static SessionFactory sessionFactory;
     private static StandardServiceRegistry serviceRegistry;
@@ -17,7 +17,8 @@ public class HibernateUtil {
     /**
      * Constructor.
      */
-    private HibernateUtil() {
+    private HibernateUtil()
+    {
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
@@ -28,8 +29,10 @@ public class HibernateUtil {
      * Builds ones the current class.
      * @return an instance of HibernateUtil class
      */
-    public static HibernateUtil getInstance() {
-        if(instance == null) {
+    public static HibernateUtil getInstance()
+    {
+        if(instance == null)
+        {
             instance = new HibernateUtil();
         }
         return instance;
@@ -39,7 +42,8 @@ public class HibernateUtil {
      * Getter of session factory class. 
      * @return sessionFactory
      */
-    public static SessionFactory getSessionFactory() {
+    public static SessionFactory getSessionFactory()
+    {
         return sessionFactory;
     }
 }

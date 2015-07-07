@@ -6,18 +6,20 @@ import model.Category;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 
-public class CategoryManagerTest {
-
+public class CategoryManagerTest
+{
     private CategoryManager categoryManager;
 
-    public CategoryManagerTest() {
+    public CategoryManagerTest()
+    {
         HibernateUtil hibernateUtil = HibernateUtil.getInstance();      
         SessionFactory factory = hibernateUtil.getSessionFactory();
         categoryManager = new CategoryManager(factory.openSession());
     }
 
     @Test
-    public void getAll() throws Exception {
+    public void getAll() throws Exception
+    {
         Category newCategory = new Category();
         newCategory.setName("test1");
         Category category = categoryManager.createCategory(newCategory);
@@ -27,7 +29,8 @@ public class CategoryManagerTest {
     }
 
     @Test
-    public void getById() throws Exception {
+    public void getById() throws Exception
+    {
         Category newCategory = new Category();
         newCategory.setName("test1");
         Category category = categoryManager.createCategory(newCategory);

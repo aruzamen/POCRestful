@@ -7,21 +7,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Helper class used on Bad Request Exception.
  */
 @XmlRootElement
-public class Error {
-
+public class Error
+{
+    /* Error message */
     private String error;
 
     /**
      * Empty constructor.
      */
-    public Error() {
+    public Error()
+    {
     }
-    
+
     /**
      * Constructor.
      * @param errorMessage message to send on a failed request
      */
-    public Error(String errorMessage) {
+    public Error(String errorMessage)
+    {
         setError(errorMessage);
     }
 

@@ -23,8 +23,8 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CategoryManagerMockTest {
-
+public class CategoryManagerMockTest
+{
     CategoryManager categoryManager;
     Category categoryTemplate;
     Session session;
@@ -33,7 +33,8 @@ public class CategoryManagerMockTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
-    public void CategoryManagerBefore() {
+    public void CategoryManagerBefore()
+    {
         session = mock(Session.class);
         categoryManager = new CategoryManager(session);
 
@@ -44,20 +45,23 @@ public class CategoryManagerMockTest {
     }
 
     @Test
-    public void findCategory() throws Exception {
+    public void findCategory() throws Exception
+    {
         when(session.get(Category.class, 1)).thenReturn(categoryTemplate);
         Category category = categoryManager.getById(1);
         assertEquals(category.getName(), "next generation");
     }
     
     @Test
-    public void findCategoryError() {
+    public void findCategoryError()
+    {
         thrown.expect(BadRequestException.class);
         categoryManager.getById(-1);
     }
 
     @Test
-    public void findAllCategories() {
+    public void findAllCategories()
+    {
         Query query = mock(Query.class);
         List<Category> fakeCategories = new ArrayList<Category>();
         fakeCategories.add(new Category());
@@ -69,7 +73,8 @@ public class CategoryManagerMockTest {
     }
 
     @Test
-    public void createCategory() throws Exception {
+    public void createCategory() throws Exception
+    {
         Transaction transaction = mock(TransactionLocal.class); 
         when(session.getTransaction()).thenReturn(transaction);
         categoryManager.createCategory(categoryTemplate);
@@ -77,7 +82,8 @@ public class CategoryManagerMockTest {
     }
     
     @Test
-    public void updateCategory() throws Exception {
+    public void updateCategory() throws Exception
+    {
         Transaction transaction = mock(TransactionLocal.class); 
         when(session.getTransaction()).thenReturn(transaction);
         categoryManager.updateCategory(1, categoryTemplate);
@@ -85,13 +91,15 @@ public class CategoryManagerMockTest {
     }
     
     @Test
-    public void updateCategoryError() {
+    public void updateCategoryError()
+    {
         thrown.expect(BadRequestException.class);
         categoryManager.updateCategory(-1, categoryTemplate);
     }
 
     @Test
-    public void deleteCategory() throws Exception {
+    public void deleteCategory() throws Exception
+    {
         Transaction transaction = mock(TransactionLocal.class); 
         when(session.get(Category.class, 1)).thenReturn(categoryTemplate);
         when(session.getTransaction()).thenReturn(transaction);
@@ -101,7 +109,8 @@ public class CategoryManagerMockTest {
     }
     
     @Test
-    public void deleteCategoryError() throws Exception {
+    public void deleteCategoryError() throws Exception
+    {
         thrown.expect(BadRequestException.class);
         categoryManager.removeCategory(-1);
     }

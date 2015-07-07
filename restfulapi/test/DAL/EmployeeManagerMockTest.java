@@ -21,8 +21,8 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class EmployeeManagerMockTest {
-
+public class EmployeeManagerMockTest
+{
     private EmployeeManager employeeManager;
     private Employee employeeTemplate;
     private Session session;
@@ -31,7 +31,8 @@ public class EmployeeManagerMockTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
-    public void EmployeeManagerBefore() {
+    public void EmployeeManagerBefore()
+    {
         session = mock(Session.class);
         employeeManager = new EmployeeManager(session);
 
@@ -43,14 +44,16 @@ public class EmployeeManagerMockTest {
     }
 
     @Test
-    public void findEmployee() {
+    public void findEmployee()
+    {
         when(session.get(Employee.class, 1)).thenReturn(employeeTemplate);
         Employee category = employeeManager.getById(1);
         assertEquals(category.getFirstName(), "lorem");
     }
 
     @Test
-    public void findAllEmployees() {
+    public void findAllEmployees()
+    {
         Query query = mock(Query.class);
         List<Employee> fakeEmployees = new ArrayList<Employee>();
         fakeEmployees.add(new Employee());
@@ -62,7 +65,8 @@ public class EmployeeManagerMockTest {
     }
 
     @Test
-    public void createEmployee() throws Exception {
+    public void createEmployee() throws Exception
+    {
         Transaction transaction = mock(TransactionLocal.class);
         when(session.getTransaction()).thenReturn(transaction);
         employeeManager.createEmployee(employeeTemplate);
@@ -70,14 +74,16 @@ public class EmployeeManagerMockTest {
     }
 
     @Test
-    public void createEmployeeFirstNameError() throws Exception {
+    public void createEmployeeFirstNameError() throws Exception
+    {
         thrown.expect(Exception.class);
         employeeManager.createEmployee(new Employee());
         thrown.expectMessage("FisrtName of employee should be provided");
     }
 
     @Test
-    public void createEmployeeLastNameError() throws Exception {
+    public void createEmployeeLastNameError() throws Exception
+    {
         thrown.expect(Exception.class);
         Employee employee = new Employee();
         employee.setFirstName("lorem");
@@ -86,7 +92,8 @@ public class EmployeeManagerMockTest {
     }
 
     @Test
-    public void updateEmployee() {
+    public void updateEmployee()
+    {
         Transaction transaction = mock(TransactionLocal.class);
         when(session.getTransaction()).thenReturn(transaction);
         employeeManager.updateEmployee(1, employeeTemplate);
@@ -94,7 +101,8 @@ public class EmployeeManagerMockTest {
     }
 
     @Test
-    public void deleteEmployee() {
+    public void deleteEmployee()
+    {
         Transaction transaction = mock(TransactionLocal.class);
         when(session.get(Employee.class, 1)).thenReturn(employeeTemplate);
         when(session.getTransaction()).thenReturn(transaction);

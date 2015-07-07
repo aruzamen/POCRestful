@@ -8,17 +8,19 @@ import org.hibernate.Session;
 /**
  * Handles all category resource.
  */
-public class CategoryManager {
-
-    /** Data base session */
+public class CategoryManager
+{
+    /** Database session */
     Session session = null;
 
     /**
      * Constructor.
      * @param  currentSession  database connection
      */
-    public CategoryManager(Session currentSession) {
-        if (currentSession == null) {
+    public CategoryManager(Session currentSession)
+    {
+        if (currentSession == null)
+        {
             throw new BadRequestException("There is not access to Database");
         }
         session = currentSession;
@@ -28,7 +30,8 @@ public class CategoryManager {
      * Gets all categories.
      * @return list of categories 
      */
-    public List<Category> getAll() {
+    public List<Category> getAll()
+    {
         Query query = session.createQuery("from Category");
         List<Category> list = query.list();
         return list;
@@ -39,10 +42,12 @@ public class CategoryManager {
      * @param categoryId unique identifier of category
      * @return category object
      */
-    public Category getById(int categoryId) {
+    public Category getById(int categoryId)
+    {
         validateCategoryId(categoryId);
         Category category = (Category)session.get(Category.class, categoryId);
-        if (category == null) {
+        if (category == null)
+        {
             throw new BadRequestException("Category object does not exist");
         }
         return category;
@@ -54,7 +59,8 @@ public class CategoryManager {
      * @param category object with changes
      * @return updated category object 
      */
-    public Category updateCategory(int categoryId, Category category) {
+    public Category updateCategory(int categoryId, Category category)
+    {
         validateCategoryId(categoryId);
         category.setId(categoryId);
         session.beginTransaction();
@@ -68,10 +74,12 @@ public class CategoryManager {
      * @param categoryId unique identifier of category
      * @return removed category object
      */
-    public Category removeCategory(int categoryId) {
+    public Category removeCategory(int categoryId)
+    {
         validateCategoryId(categoryId);
         Category category = (Category)session.get(Category.class, categoryId);
-        if (category == null) {
+        if (category == null)
+        {
             throw new BadRequestException("Category object does not exist");
         }
         session.beginTransaction();
@@ -84,8 +92,10 @@ public class CategoryManager {
      * Validates if category Id is more than zero.
      * @param categoryId unique identifier of category
      */
-    private void validateCategoryId(int categoryId) {
-        if(categoryId < 0) {
+    private void validateCategoryId(int categoryId)
+    {
+        if(categoryId < 0)
+        {
             throw new BadRequestException("CategoryId should more than zero");
         }
     }
@@ -95,8 +105,10 @@ public class CategoryManager {
      * @param category object to be saved
      * @return category object
      */
-    public Category createCategory(Category category) {
-        if (category.getName().equals("")) {
+    public Category createCategory(Category category)
+    {
+        if (category.getName().equals(""))
+        {
             throw new BadRequestException("name is empty");
         }
         session.beginTransaction();

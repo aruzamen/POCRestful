@@ -10,8 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @Entity(name="Category")
-public class Category {
-
+public class Category
+{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
