@@ -9,44 +9,44 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity(name="Employee")
 public class Employee {
 
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
 
-	private String firstName;
+    private String firstName;
 
-	private String lastName;  
+    private String lastName;
 
-	private Category category;
+    private Category category;
 
-	public int getId() {  
-	    return id;  
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {  
-	    this.id = id;  
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getFirstName() {  
-	    return firstName;  
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {  
-	    this.firstName = firstName;  
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getLastName() {  
-	    return lastName;  
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setLastName(String lastName) {  
-	    this.lastName = lastName;  
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public Category getCategory() {
-		return category;
-	}
+    public Category getCategory() {
+        return category;
+    }
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }  

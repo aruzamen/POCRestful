@@ -22,56 +22,56 @@ import DAL.HibernateUtil;
 @Path("/category")
 public class CategoryServices {
 
-	private CategoryManager categoryManager;
-	private EmployeeManager employeeManager;
+    private CategoryManager categoryManager;
+    private EmployeeManager employeeManager;
 
-	public CategoryServices() {
-		HibernateUtil hibernateUtil = HibernateUtil.getInstance();		
-		SessionFactory factory = hibernateUtil.getSessionFactory();
-		categoryManager = new CategoryManager(factory.openSession());
-		employeeManager = new EmployeeManager(factory.openSession());
-	}
+    public CategoryServices() {
+        HibernateUtil hibernateUtil = HibernateUtil.getInstance();
+        SessionFactory factory = hibernateUtil.getSessionFactory();
+        categoryManager = new CategoryManager(factory.openSession());
+        employeeManager = new EmployeeManager(factory.openSession());
+    }
 
-	@GET
-	@Produces("application/json")
-	public List<Category> getAll() {
-		return categoryManager.getAll();
-	}
+    @GET
+    @Produces("application/json")
+    public List<Category> getAll() {
+        return categoryManager.getAll();
+    }
 
-	@GET
-	@Path("{categoryId}")
-	@Produces("application/json")
-	public Category getById(@PathParam("categoryId") int categoryId) {
-		return categoryManager.getById(categoryId);
-	}
+    @GET
+    @Path("{categoryId}")
+    @Produces("application/json")
+    public Category getById(@PathParam("categoryId") int categoryId) {
+        return categoryManager.getById(categoryId);
+    }
 
-	@PUT
-	@Path("{categoryId}")
-	@Produces("application/json")
-	public Category updateEmployee(@PathParam("categoryId") int categoryId, Category category) {
-		return categoryManager.updateCategory(categoryId, category);
-	}
+    @PUT
+    @Path("{categoryId}")
+    @Produces("application/json")
+    public Category updateEmployee(@PathParam("categoryId") int categoryId, Category category) {
+        return categoryManager.updateCategory(categoryId, category);
+    }
 
-	@DELETE
-	@Path("{categoryId}")
-	@Produces("application/json")
-	public Category removeEmployee(@PathParam("categoryId") int categoryId) {
-		return categoryManager.removeCategory(categoryId);
-	}
+    @DELETE
+    @Path("{categoryId}")
+    @Produces("application/json")
+    public Category removeEmployee(@PathParam("categoryId") int categoryId) {
+        return categoryManager.removeCategory(categoryId);
+    }
 
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("application/json")
-	public Category createGroup(Category category) {
-		return categoryManager.createCategory(category);
-	}
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
+    public Category createGroup(Category category) {
+        return categoryManager.createCategory(category);
+    }
 
-	@POST @Path("{categoryId}/employee")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("application/json")
-	public Employee createEmployee(@PathParam("categoryId") int categoryId, Employee employee) {
-		Category category = categoryManager.getById(categoryId); 
-		employee.setCategory(category);
-		return employeeManager.createEmployee(employee);
-	}
+    @POST @Path("{categoryId}/employee")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
+    public Employee createEmployee(@PathParam("categoryId") int categoryId, Employee employee) {
+        Category category = categoryManager.getById(categoryId);
+        employee.setCategory(category);
+        return employeeManager.createEmployee(employee);
+    }
 }

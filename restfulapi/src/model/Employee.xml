@@ -2,13 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
- <class name="model.Employee" table="Employee">
-  <id name="id">
-   <generator class="native"/>
-  </id>
-  <property generated="never" name="lastName"/>
-  <property generated="never" name="firstName"/>
-  <many-to-one class="model.Category" name="category" column="categoryId" not-null="true"/>
-  
- </class>
+    <class name="model.Employee" table="Employee">
+        <id name="id">
+            <generator class="native"/>
+        </id>
+        <property generated="never" name="lastName"/>
+        <property generated="never" name="firstName"/>
+        <many-to-one class="model.Category" name="category" column="categoryId" not-null="true"/>
+    </class>
 </hibernate-mapping>

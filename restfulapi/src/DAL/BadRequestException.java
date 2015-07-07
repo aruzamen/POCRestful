@@ -10,6 +10,6 @@ public class BadRequestException extends WebApplicationException
     public BadRequestException(String error)
     {
         super(Response.status(Status.BAD_REQUEST).type(MediaType.APPLICATION_JSON)
-        		.entity(new Error(error)).build());
+                .entity(new Error(error)).build());
     }
 }

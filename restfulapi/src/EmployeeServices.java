@@ -16,46 +16,46 @@ import model.Employee;
 @Path("/employee")
 public class EmployeeServices {
 
-	private EmployeeManager employeeManager;
+    private EmployeeManager employeeManager;
 
-	public EmployeeServices() {
-		HibernateUtil hibernateUtil = HibernateUtil.getInstance();		
-		SessionFactory factory = hibernateUtil.getSessionFactory();
-		employeeManager = new EmployeeManager(factory.openSession());
-	}
+    public EmployeeServices() {
+        HibernateUtil hibernateUtil = HibernateUtil.getInstance();
+        SessionFactory factory = hibernateUtil.getSessionFactory();
+        employeeManager = new EmployeeManager(factory.openSession());
+    }
 
-	@GET
-	@Produces("application/json")
-	public List<Employee> getAll() {
-		List<Employee> employess = employeeManager.getAll(); 
-		return employess;
-	}
+    @GET
+    @Produces("application/json")
+    public List<Employee> getAll() {
+        List<Employee> employess = employeeManager.getAll(); 
+        return employess;
+    }
 
-	@GET
-	@Path("{employeeId}")
-	@Produces("application/json")
-	public Employee getById(@PathParam("employeeId") int employeeId) {
-		return employeeManager.getById(employeeId);
-	}
+    @GET
+    @Path("{employeeId}")
+    @Produces("application/json")
+    public Employee getById(@PathParam("employeeId") int employeeId) {
+        return employeeManager.getById(employeeId);
+    }
 
-	@PUT
-	@Path("{employeeId}")
-	@Produces("application/json")
-	public Employee updateEmployee(@PathParam("employeeId") int employeeId, Employee employee) {
-		return employeeManager.updateEmployee(employeeId, employee);
-	}
+    @PUT
+    @Path("{employeeId}")
+    @Produces("application/json")
+    public Employee updateEmployee(@PathParam("employeeId") int employeeId, Employee employee) {
+        return employeeManager.updateEmployee(employeeId, employee);
+    }
 
-	@DELETE
-	@Path("{employeeId}")
-	@Produces("application/json")
-	public Employee removeEmployee(@PathParam("employeeId") int employeeId) {
-		return employeeManager.removeEmployee(employeeId);
-	}
+    @DELETE
+    @Path("{employeeId}")
+    @Produces("application/json")
+    public Employee removeEmployee(@PathParam("employeeId") int employeeId) {
+        return employeeManager.removeEmployee(employeeId);
+    }
 
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("application/json")
-	public Employee createEmployee(Employee employee) throws Exception {
-		return employeeManager.createEmployee(employee);
-	}
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
+    public Employee createEmployee(Employee employee) throws Exception {
+        return employeeManager.createEmployee(employee);
+    }
 }
