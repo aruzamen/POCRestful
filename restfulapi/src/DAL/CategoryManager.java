@@ -10,6 +10,9 @@ public class CategoryManager {
     Session session = null;
 
     public CategoryManager(Session currentSession) {
+        if (currentSession == null) {
+            throw new BadRequestException("There is not access to Database");
+        }
         session = currentSession;
     }
 
@@ -22,6 +25,9 @@ public class CategoryManager {
     public Category getById(int categoryId) {
         validateCategoryId(categoryId);
         Category category = (Category)session.get(Category.class, categoryId);
+        if (category == null) {
+            throw new BadRequestException("Category object does not exist");
+        }
         return category;
     }
 
@@ -37,6 +43,9 @@ public class CategoryManager {
     public Category removeCategory(int categoryId) {
         validateCategoryId(categoryId);
         Category category = (Category)session.get(Category.class, categoryId);
+        if (category == null) {
+            throw new BadRequestException("Category object does not exist");
+        }
         session.beginTransaction();
         session.delete(category);
         session.getTransaction().commit();

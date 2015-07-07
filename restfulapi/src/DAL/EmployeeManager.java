@@ -11,6 +11,9 @@ public class EmployeeManager {
     Session session = null;
 
     public EmployeeManager(Session currentSession) {
+        if (currentSession == null) {
+            throw new BadRequestException("There is not access to Database");
+        }
         session = currentSession;
     }
 
@@ -25,6 +28,9 @@ public class EmployeeManager {
 
     public Employee getById(int employeeId) {
         Employee employee = (Employee)session.get(Employee.class, employeeId);
+        if (employee == null) {
+            throw new BadRequestException("Employee object does not exist");
+        }
         Hibernate.initialize(employee.getCategory());
         return employee;
     }
@@ -39,6 +45,9 @@ public class EmployeeManager {
 
     public Employee removeEmployee(int employeeId) {
         Employee removeEmployee = (Employee)session.get(Employee.class, employeeId);
+        if (removeEmployee == null) {
+            throw new BadRequestException("Employee object does not exist");
+        }
         Hibernate.initialize(removeEmployee.getCategory());
         session.beginTransaction();
         session.delete(removeEmployee);
