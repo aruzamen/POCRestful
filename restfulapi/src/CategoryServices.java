@@ -74,4 +74,12 @@ public class CategoryServices {
         employee.setCategory(category);
         return employeeManager.createEmployee(employee);
     }
+    
+    @GET @Path("{categoryId}/employee")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
+    public List<Employee> findEmployee(@PathParam("categoryId") int categoryId) {
+        Category category = categoryManager.getById(categoryId);
+        return employeeManager.findEmployees(categoryId);
+    }
 }

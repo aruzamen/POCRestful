@@ -1,5 +1,6 @@
 package DAL;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.Employee;
 import org.hibernate.Hibernate;
@@ -100,6 +101,24 @@ public class EmployeeManager {
         session.persist(employee);
         session.getTransaction().commit();
         return employee;
+    }
+    
+    /**
+     * Finds employees by category.
+     * @param categoryId unique identifier of category
+     * @return list of employees
+     */
+    public List<Employee> findEmployees(int categoryId) {
+        Query query = session.createQuery("from Employee where categoryId = :categoryId ");
+        query.setParameter("categoryId", categoryId);
+        List<Employee> list = query.list();
+        if (list.size() == 0) {
+            return new ArrayList<Employee>();
+        }
+        for (Employee emp : list) {
+            Hibernate.initialize(emp.getCategory());
+        }
+        return list;
     }
 
     @Override
